@@ -1,9 +1,9 @@
-MRUBY_DIR:=../mruby
+MRUBY_DIR:=$(HOME)/mruby
 CC=gcc
 INCLUDES=-I$(MRUBY_DIR)/include -I$(MRUBY_DIR)/src
 CFLAGS=$(shell pkg-config sqlite3 --cflags) -Wall -Wextra -Wno-unused -fPIC -g -O2 $(INCLUDES)
 SONAME=libsqlite3ext_mruby.so.1
-LDFLAGS=-shared -Wl,-soname,$(SONAME)
+LDFLAGS=-shared -Wl#,-soname,$(SONAME)
 LIBS=$(MRUBY_DIR)/lib/libmruby.a $(shell pkg-config sqlite3 --libs) -lm
 all: libsqlite3ext_mruby.so.1.0.0
 $(MRUBY_DIR)/lib/libmruby.a:

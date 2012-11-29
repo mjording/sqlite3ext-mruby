@@ -168,7 +168,7 @@ kernel_create_function(mrb_state *mrb, mrb_value self)
     rc = sqlite3_create_function_v2(db, RSTRING_PTR(name), -1,
             SQLITE_UTF8, fd, f_ruby_function, NULL, NULL, free);
     if (rc != SQLITE_OK) {
-        mrb_raise(mrb, E_RUNTIME_ERROR, "Can't create the function %s", name);
+        mrb_raisef(mrb, E_RUNTIME_ERROR, "Can't create the function %s", name);
         return mrb_nil_value(); /* not reached */
     }
     return blk;
